@@ -1,0 +1,23 @@
+{
+  "name": "ottb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "santhosh",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "express": "^4.19.2",
+    "figlet": "^1.7.0",
+    "inquirer": "^10.1.8",
+    "mysql": "^2.18.1"
+  },
+  "bin": {
+    "sqlink": "./index.js"
+  },
+  "type": "module"
+}
