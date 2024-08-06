@@ -7,7 +7,7 @@
   },
   "author": "santhosh",
   "license": "ISC",
-  "description": "",
+  "description": "sqlink is a Node.js library that connects to your MySQL or any relational database and generates RESTful APIs based on the table names you provide. Simplify your development process with automatic API creation.",
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
