@@ -21,7 +21,6 @@
     "sqlink": "index.js"
   },
   "type": "commonjs",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Santhoshlm10/SQLink.git"
