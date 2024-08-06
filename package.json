@@ -17,7 +17,27 @@
     "mysql": "^2.18.1"
   },
   "bin": {
-    "sqlink": "./index.js"
+    "sqlink": "index.js"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santhoshlm10/SQLink.git"
+  },
+  "keywords": [
+    "SQL",
+    "MySQL",
+    "sql",
+    "REST",
+    "API",
+    "connector",
+    "ORM",
+    "Relational",
+    "Mapping"
+  ],
+  "bugs": {
+    "url": "https://github.com/Santhoshlm10/SQLink/issues"
+  },
+  "homepage": "https://github.com/Santhoshlm10/SQLink#readme"
 }
