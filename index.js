@@ -1,16 +1,13 @@
 #!/usr/bin/env node
 
-import { program } from "commander";
-import chalk from "chalk";
+const express = require('express')
+const app = express()
+const port = 3000
 
-program
-  .version("1.0.0")
-  .description("My Node CLI")
-  .option("-n, --name <type>", "Add your name")
-  .action((options) => {
-    console.log(chalk.blue(`Hey, ${options.name}!`));
-    console.log(chalk.green(`Hey, ${options.name}!`));
-    console.log(chalk.red(`Hey, ${options.name}!`));
-  });
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-program.parse(process.argv);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
