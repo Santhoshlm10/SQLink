@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/table', router);
 
 program
-  .version("1.0.2")
+  .version("1.0.3")
   .name("sqlink")
   .description("sqlink is a Node.js library that connects to your MySQL or any relational database and generates RESTful APIs based on the table names you provide. Simplify your development process with automatic API creation.")
   .arguments("mode")
