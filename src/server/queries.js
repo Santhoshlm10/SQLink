@@ -50,6 +50,17 @@ class SQLQueriesClass{
     }
   }
 
+  async executeProcedure(url){
+    try {
+      let em_url = `/procedure${url}`
+      let query = QueryGenerator.procedureGenerator(em_url);
+      let [rows] = await pool.query(query)
+      return {success:true,data:rows}
+    } catch (error) {
+      return {success:false,message:error.message}
+    }
+  }
+
 
 }
 export let SQLQueries = new SQLQueriesClass();

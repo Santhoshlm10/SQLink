@@ -1,11 +1,17 @@
 import express from "express";
+import { SQLQueries } from "./queries.js";
+import {SQLog} from "./../utils/logger/logger.js"
+
 const procedureRouter = express.Router();
+
 procedureRouter.get('/:procedurename', async (req, res) => {
-  const tablename = req.params.tablename;
+  const procedure_name = req.params.procedurename;
+  const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   try {
-    // const items = await getAllItems(req.url);
-    // res.json(items);
-    res.status(200).send({message:"done",success:true})
+    SQLog.request(`Request received from ${clientIp} for procedure ${procedure_name}`)
+    const items = await SQLQueries.executeProcedure(req.url);
+    SQLog.response(`Response send to ${clientIp} from procedure ${procedure_name}`)
+    res.json(items);
   } catch (error) {
     res.status(500).send({success:false,message:error.message})
   }

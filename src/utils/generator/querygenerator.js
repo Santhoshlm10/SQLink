@@ -81,6 +81,13 @@ class QueryGeneratorClass {
         return query;
     }
 
+    procedureGenerator(url){
+        const urlParts = url.split('/');
+        const procedure = urlParts[urlParts.length - 1]; 
+        const procedure_statement = `CALL ${procedure};`
+        return procedure_statement;
+    }
+
 
 
 
