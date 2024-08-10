@@ -5,7 +5,7 @@ import procedureRouter from "./../server/procedure.js";
 import figlet from "figlet";
 import { createConfig } from "./../utils/config/checker.js";
 import { SQLog } from "./../utils/logger/logger.js";
-
+import cors from "cors";
 
 const websiteurl = 'https://sqlinkjs.github.io/';
 const npmurl = 'https://www.npmjs.com/package/sqlink';
@@ -17,6 +17,8 @@ const styledUrl2 = chalk.green.underline(npmurl);
 const styledUrl3 = chalk.magenta.underline(githuburl);
 
 const app = express();
+app.use(cors());
+
 const port = 3000;
 
 app.use(express.json());
