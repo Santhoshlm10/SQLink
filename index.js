@@ -2,46 +2,17 @@
 
 
 import { program } from "commander";
-import chalk from "chalk";
-import figlet from "figlet";
-import { exec } from "child_process";
-import { createConfig } from "./utils/config/checker.js";
-import { SQLog } from "./utils/logger/logger.js";
-import express from "express";
-import  router  from "./server/endpoints.js";
-
-const app = express();
-const port = 3000;
-app.use(express.json());
-app.use('/table', router);
+import { validateCommand } from "./src/app.js";
 
 program
   .version("1.0.3")
   .name("sqlink")
-  .description("sqlink is a Node.js library that connects to your MySQL or any relational database and generates RESTful APIs based on the table names you provide. Simplify your development process with automatic API creation.")
-  .arguments("mode")
-  .action(async(name) => {
-    if(name == "run"){
-      console.log(
-        chalk.yellow(figlet.textSync("SQLink", { horizontalLayout: "full" }))
-      );
-      await createConfig()
-    }else if(name == "upgrade"){
-      exec('sudo npm install -g sqlink', (error, stdout, stderr) => {
-        if (error) {
-          SQLog.error(`Error: ${error.message}`)
-          return;
-        }
-        if (stderr) {
-          SQLog.error(`Stderr: ${stderr}`)
-          return;
-        }
-      });
-    }else{
-      SQLog.error("Unknown Command, please enter sqlite -h to see options")
-    }
+  .description("SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.")
+  .option("run", "runs the sqlink program")
+  .option("update", "updates the library to the latest version")
+  .option("config", "you can update the mysql configuration from CLI")
+  .arguments("option")
+  .action(async(command) => {
+      await validateCommand(command)
   });
-  program.parse(process.argv);
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+program.parse(process.argv);
