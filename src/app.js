@@ -2,7 +2,7 @@ import { platform } from "os";
 import { SQLog } from "./utils/logger/logger.js";
 import { exec } from "child_process";
 import { launchProvider } from "./utils/config/provider.js";
-import { createConfig, returnPropertiesPath, writeConfig } from "./utils/config/checker.js";
+import { returnPropertiesPath, writeConfig } from "./utils/config/checker.js";
 import { initServer } from "./server/init.js";
 
 export async function validateCommand(command){

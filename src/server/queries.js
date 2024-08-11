@@ -20,7 +20,6 @@ class SQLQueriesClass{
     try {
       let em_url = `/table${url}`
       let query = QueryGenerator.insertQueryGenerator(em_url,payload);
-      console.log("generatedQUery",query)
       await pool.query(query)
       return {success:true,message:"Data inserted successfully"}
     } catch (error) {

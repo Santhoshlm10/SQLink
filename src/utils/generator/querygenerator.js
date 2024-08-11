@@ -89,7 +89,5 @@ class QueryGeneratorClass {
     }
 
 
-
-
 }
 export let QueryGenerator = new QueryGeneratorClass();
