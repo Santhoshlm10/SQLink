@@ -70,7 +70,7 @@ Use this method to update data in your MySQL table.
 
 - **URL:**
   ```
-  https://localhost:3001/table/{tableName}/update/{updateKey}/{updateValue}
+  https://localhost:3001/table/{tableName}/update({updateKey},{updateValue})
   ```
 - **Method:** `PUT`
 - **Payload:**
@@ -89,7 +89,7 @@ Use this method to delete a record from your MySQL table.
 
 - **URL:**
   ```
-  https://localhost:3001/table/{tableName}/delete/{deleteKey}/{deleteValue}
+  https://localhost:3001/table/{tableName}/delete({deleteKey},{deleteValue})
   ```
 - **Method:** `DELETE`
 - **Payload:**
