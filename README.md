@@ -1,3 +1,4 @@
+![github-small](https://sqlinkjs.github.io/logo.png)
 
 # SQLink
 
