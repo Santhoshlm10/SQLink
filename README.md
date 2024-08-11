@@ -1,6 +1,15 @@
 <p align="center">
   <img src="https://sqlinkjs.github.io/logo.png" alt="github-small" height="170" width="200">
 </p>
+<div align="center">
+  <a href="https://sqlinkjs.github.io">Documentation</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://github.com/Santhoshlm10/SQLink/issues">Issues</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.npmjs.com/package/sqlink">npm</a>
+  <br />
+</div><br/>
+
 
 # SQLink
 
