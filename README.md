@@ -1,5 +1,6 @@
-![github-small](https://sqlinkjs.github.io/logo.png)
-
+<p align="center">
+  <img src="https://sqlinkjs.github.io/logo.png" alt="github-small" height="140" width="170">
+</p>
 # SQLink
 
 **SQLink** is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD (Create, Read, Update, Delete) support. With SQLink, you can easily expose your MySQL tables and stored procedures as APIs, allowing seamless interaction with your database through HTTP requests.
