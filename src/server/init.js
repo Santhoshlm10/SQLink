@@ -30,7 +30,7 @@ export async function initServer(){
     console.log(
         chalk.yellow(figlet.textSync("SQLink", { horizontalLayout: "full" }))
       );
-      console.log(`\t\t${chalk.yellowBright('1.0.3')}`)
+      console.log(`\t\t${chalk.yellowBright('1.0.4')}`)
       console.log(` Website: ${styledUrl1}  npm: ${styledUrl2}  Github: ${styledUrl3}\n`)
       await createConfig("config")
       app.listen(port, () => {
