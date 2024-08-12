@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="170" width="200">
+  <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="110" width="200">
 </p>
 <div align="center">
   <a href="https://sqlinkjs.github.io">Documentation</a>
