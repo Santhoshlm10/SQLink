@@ -38,7 +38,10 @@ Before querying data from MySQL, you need to configure SQLink. To do this, run t
   sqlink run
   ```
 After running this command, you will be prompted in the console to enter your MySQL credentials.
+
 > **Important:** Configuration is required only when you run the program for the first time or if the configuration file has been deleted.
+
+Once you enter the MySQL and Server configuration, you can re-run `sqlink run` command again and start querying the data.
 
 ## Usage
 
