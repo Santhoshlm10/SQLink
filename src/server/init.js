@@ -6,6 +6,7 @@ import figlet from "figlet";
 import { SQLog } from "./../utils/logger/logger.js";
 import cors from "cors";
 import { db_config, returnPropertiesPath } from "../utils/config/checker.js";
+import { getLocalIpAddress } from "../utils/config/ipconfig.js";
 
 const websiteurl = 'https://sqlinkjs.github.io/';
 const npmurl = 'https://www.npmjs.com/package/sqlink';
@@ -31,9 +32,10 @@ export async function initServer(){
       console.log(`\t\t${chalk.yellowBright('1.0.5')}`)
       console.log(` Website: ${styledUrl1}  npm: ${styledUrl2}  Github: ${styledUrl3}\n`)
       const port = db_config.server_port;
+      let current_ip = getLocalIpAddress()
       app.listen(port, () => {
-        SQLog.info(`Reading configuration file from path: ${returnPropertiesPath()}`,true)
-        SQLog.info(`MySQL configuration reffered to database: ${db_config.database_name} with user: ${db_config.user}`,true)
-        SQLog.info(`Server is running on http://localhost:${port}, and is ready to respond to your queries`,true)
+        SQLog.info(`Reading configuration file from path ${returnPropertiesPath()}`,true)
+        SQLog.info(`MySQL  is configured to use the database ${db_config.database_name} with the user ${db_config.user}`,true)
+        SQLog.info(`Server is running on http://${current_ip}:${port}, and is ready to respond to your queries`,true)
       });
 }
