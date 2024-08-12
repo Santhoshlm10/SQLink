@@ -2,7 +2,9 @@
   <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="110" width="200">
 </p>
 <div align="center">
-  <a href="https://sqlinkjs.github.io">Documentation</a>
+  <a href="https://sqlinkjs.github.io">Website</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://sqlinkjs.github.io/docs/docs.html">Documentation</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/Santhoshlm10/SQLink/issues">Issues</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -27,6 +29,16 @@ Before using SQLink, ensure that you have npm installed on your machine. You can
   ```bash
   npm install -g sqlink
   ```
+
+## Getting Started
+
+Before querying data from MySQL, you need to configure SQLink. To do this, run the following command:
+
+  ```
+  sqlink run
+  ```
+After running this command, you will be prompted in the console to enter your MySQL credentials.
+> **Important:** Configuration is required only when you run the program for the first time or if the configuration file has been deleted.
 
 ## Usage
 
