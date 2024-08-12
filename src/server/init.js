@@ -3,9 +3,9 @@ import express from "express";
 import tableRouter from "./../server/table.js";
 import procedureRouter from "./../server/procedure.js";
 import figlet from "figlet";
-import { createConfig } from "./../utils/config/checker.js";
 import { SQLog } from "./../utils/logger/logger.js";
 import cors from "cors";
+import { db_config, returnPropertiesPath } from "../utils/config/checker.js";
 
 const websiteurl = 'https://sqlinkjs.github.io/';
 const npmurl = 'https://www.npmjs.com/package/sqlink';
@@ -19,8 +19,6 @@ const styledUrl3 = chalk.magenta.underline(githuburl);
 const app = express();
 app.use(cors());
 
-const port = 3000;
-
 app.use(express.json());
 app.use('/table', tableRouter);
 app.use('/procedure', procedureRouter)
@@ -32,8 +30,10 @@ export async function initServer(){
       );
       console.log(`\t\t${chalk.yellowBright('1.0.4')}`)
       console.log(` Website: ${styledUrl1}  npm: ${styledUrl2}  Github: ${styledUrl3}\n`)
-      await createConfig("config")
+      const port = db_config.server_port;
       app.listen(port, () => {
+        SQLog.info(`Reading configuration file from path: ${returnPropertiesPath()}`,true)
+        SQLog.info(`MySQL configuration reffered to database: ${db_config.database_name} with user: ${db_config.user}`,true)
         SQLog.info(`Server is running on http://localhost:${port}, and is ready to respond to your queries`,true)
       });
 }

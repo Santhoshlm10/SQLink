@@ -1,12 +1,23 @@
 import mysql from 'mysql2';
-import config from "dotenv"
+import { db_config } from '../utils/config/checker.js';
 
-config.config()
-const pool = mysql.createPool({
-  host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.database
-});
+let pool;
 
-export default pool.promise();
+export async function initialiseDatabase() {
+  if (!pool) {
+    const p = mysql.createPool({
+      host: db_config.host,
+      user: db_config.user,
+      password: db_config.password,
+      database: db_config.database_name,
+    });
+    pool = p.promise();
+  }
+}
+
+export function getPool() {
+  if (!pool) {
+    throw new Error('Database pool not initialized. Call initialiseDatabase() first.');
+  }
+  return pool;
+}

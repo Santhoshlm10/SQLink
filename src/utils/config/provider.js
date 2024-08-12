@@ -3,6 +3,7 @@ import { SQLog } from '../logger/logger.js';
 
 export async function launchProvider() {
     try {
+        SQLog.info("Please provide your MySQL configuration for connection",false)
         const answers = await inquirer.prompt([
             {
                 type: 'input',
@@ -25,7 +26,7 @@ export async function launchProvider() {
             {
                 type: 'input',
                 name: 'database_name',
-                message: 'Enter database name: '
+                message: 'Enter Database name: '
             },
             {
                 type: 'input',
@@ -36,7 +37,7 @@ export async function launchProvider() {
         ]);
         return answers;
     } catch (error) {
-        SQLog.error("MySQL configuration exited")
+        SQLog.error("MySQL configuration cancelled")
         return null;
     }
 }

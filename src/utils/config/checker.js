@@ -7,33 +7,14 @@ import { launchProvider } from "./provider.js";
 
 const homeDir = os.homedir();
 
-export async function createConfig() {
+export let db_config = {}
+
+export async function hasConfiguration(){
     const sqlinkDir = path.join(homeDir, '.sqlink');
     const propertiesFilePath = path.join(sqlinkDir, 'properties.json');
-    
-    if (!fs.existsSync(sqlinkDir)) {
-        try {
-            fs.mkdirSync(sqlinkDir);
-        } catch (err) {
-            SQLog.error(`Error creating directory ${sqlinkDir}: ${err.message}`, true);
-            return;
-        }
-    }
-
-    if (!fs.existsSync(propertiesFilePath)) {
-        try {
-            let config_props = await launchProvider();
-            writeConfig(config_props,propertiesFilePath);
-        } catch (err) {
-            SQLog.error(`Error writing config properties: ${err.message}`, false);
-            return;
-        }
-
-    } else {
-        SQLog.info(`Reading configuration file from: ${propertiesFilePath} (run 'sqlink config' to update configuration)`, true);
-    }
+    let pathExists = fs.existsSync(propertiesFilePath)
+    return pathExists
 }
-
 
 export function returnPropertiesPath(){
     const sqlinkDir = path.join(homeDir, '.sqlink');
@@ -45,11 +26,19 @@ export function returnPropertiesPath(){
 export function writeConfig(configContent,ppfilePath){
     try {
         fs.writeFileSync(ppfilePath, JSON.stringify(configContent, null, 2), 'utf-8');
-        SQLog.info(`Config file created at ${ppfilePath}`, true);
-        SQLog.info(`Please run 'sqlink run' command to start the program with applied MySQL configuration`, false);
+        SQLog.info(`Config file created at ${ppfilePath}`, false);
+        SQLog.info(`Please run 'sqlink run' command to start the program with applied MySQL configuration, or use 'sqlink config' to update the configuration.`, false);
         return;
     } catch (err) {
         SQLog.error(`Error writing to file ${ppfilePath}: ${err.message}`, false);
         return;
     }
+}
+
+export async function initConfiguration(){
+    const jsonFilePath = returnPropertiesPath()
+    const data = await fs.readFileSync(jsonFilePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    db_config = jsonData
+    return;
 }

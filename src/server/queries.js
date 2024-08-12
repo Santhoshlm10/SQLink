@@ -1,4 +1,4 @@
-import pool from "./../mysql/connector.js"
+import { getPool } from "./../mysql/connector.js"
 import {QueryGenerator} from "./../utils/generator/querygenerator.js"
 
 
@@ -8,6 +8,7 @@ class SQLQueriesClass{
   async getMethod(url){
     try {
       let em_url = `/table${url}`
+      const pool = getPool();
       let query = QueryGenerator.selectQueryGenerator(em_url)
       const [rows] = await pool.query(query)
       return {success:true,data:rows,length:rows?.length}
@@ -19,6 +20,8 @@ class SQLQueriesClass{
   async insertMethod(url,payload){
     try {
       let em_url = `/table${url}`
+      const pool = getPool();
+
       let query = QueryGenerator.insertQueryGenerator(em_url,payload);
       await pool.query(query)
       return {success:true,message:"Data inserted successfully"}
@@ -30,6 +33,8 @@ class SQLQueriesClass{
   async updateMethod(url,payload){
     try {
       let em_url = `/table${url}`
+      const pool = getPool();
+
       let query = QueryGenerator.updateQueryGenerator(em_url,payload);
       await pool.query(query)
       return {success:true,message:"Data updated successfully"}
@@ -41,6 +46,8 @@ class SQLQueriesClass{
   async deleteMethod(url){
     try {
       let em_url = `/table${url}`
+      const pool = getPool();
+
       let query = QueryGenerator.deleteQueryGenerator(em_url);
       await pool.query(query)
       return {success:true,message:"Data deleted successfully"}
@@ -52,6 +59,8 @@ class SQLQueriesClass{
   async executeProcedure(url){
     try {
       let em_url = `/procedure${url}`
+      const pool = getPool();
+
       let query = QueryGenerator.procedureGenerator(em_url);
       let [rows] = await pool.query(query)
       return {success:true,data:rows}
