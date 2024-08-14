@@ -1,5 +1,6 @@
 <p align="center">
   <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="110" width="200">
+  <h1 style="text-align:center">SQLink</h1>
 </p>
 <div align="center">
   <a href="https://sqlinkjs.github.io">Website</a>
@@ -9,11 +10,16 @@
   <a href="https://github.com/Santhoshlm10/SQLink/issues">Issues</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://www.npmjs.com/package/sqlink">npm</a>
-  <br />
+  <br /><br />
+
+  [![npm version](https://img.shields.io/npm/v/sqlink.svg?style=flat-square)](https://badge.fury.io/js/sqlink)
+![license](https://img.shields.io/npm/l/sqlink.svg?style=flat-square)
+[![downloads](https://img.shields.io/npm/dm/sqlink.svg?style=flat-square)](https://www.npmjs.com/package/sqlink)
+
 </div><br/>
 
 
-# SQLink
+
 
 **SQLink** is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD (Create, Read, Update, Delete) support. With SQLink, you can easily expose your MySQL tables and stored procedures as APIs, allowing seamless interaction with your database through HTTP requests.
 
