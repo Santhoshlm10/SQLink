@@ -5,7 +5,7 @@ import { program } from "commander";
 import { validateCommand } from "./src/app.js";
 
 program
-  .version("1.0.7")
+  .version("1.0.8")
   .name("sqlink")
   .description("SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.")
   .option("run", "runs the sqlink program")
