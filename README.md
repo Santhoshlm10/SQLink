@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="110" width="200">
 </p>
-<h1 style="text-align:center">SQLink</h1>
+<h1 align="center">SQLink</h1>
 <div align="center">
   <a href="https://sqlinkjs.github.io">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
