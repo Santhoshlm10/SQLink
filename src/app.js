@@ -17,7 +17,7 @@ export async function validateCommand(command){
         await lpFunction()
       }
     }else if(command == "update"){
-      let update_command = platform == "win32" ? 'npm install -g sqlink@latest' : 'sudo npm install -g sqlink@latest'
+      let update_command = platform() == "win32" ? 'npm install -g sqlink@latest' : 'sudo npm install -g sqlink@latest'
       exec(update_command, (error, stdout, stderr) => {
         if (error) {
           SQLog.error(`Oops!, something went wrong while updating the package, please try again.`,false)
