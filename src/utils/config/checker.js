@@ -35,6 +35,15 @@ export function writeConfig(configContent,ppfilePath){
     }
 }
 
+export async function createConfigurationIfNotPresent(){
+    const sqlinkDir = path.join(homeDir, '.sqlink');
+    if (!fs.existsSync(sqlinkDir)) {
+        fs.mkdirSync(sqlinkDir, { recursive: true });
+        SQLog.info(`Directory created at ${sqlinkDir}`,true)
+    }
+    return true;
+}
+
 export async function initConfiguration(){
     const jsonFilePath = returnPropertiesPath()
     const data = await fs.readFileSync(jsonFilePath, 'utf8');

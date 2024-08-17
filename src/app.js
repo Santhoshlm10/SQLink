@@ -2,7 +2,7 @@ import { platform } from "os";
 import { SQLog } from "./utils/logger/logger.js";
 import { exec } from "child_process";
 import { launchProvider } from "./utils/config/provider.js";
-import { db_config, hasConfiguration, initConfiguration, returnPropertiesPath, writeConfig } from "./utils/config/checker.js";
+import { createConfigurationIfNotPresent, db_config, hasConfiguration, initConfiguration, returnPropertiesPath, writeConfig } from "./utils/config/checker.js";
 import { initServer } from "./server/init.js";
 import { initialiseDatabase } from "./mysql/connector.js";
 
@@ -37,14 +37,15 @@ export async function validateCommand(command){
         SQLog.error("Unkown command, please press sqlite -h to see options",false)
     }
 }
-
 export async function lpFunction(){
   await launchProvider().then((res) => {
     let config_path = returnPropertiesPath()
     return {res,config_path}
-  }).then((res) => {
+  }).then(async(res) => {
     if(res.res != null) {
-      writeConfig(res.res,res.config_path);
+      createConfigurationIfNotPresent().then(() => {
+        writeConfig(res.res,res.config_path);
+      })
     }
   }).then(() => {
     return;
