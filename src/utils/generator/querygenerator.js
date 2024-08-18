@@ -88,6 +88,13 @@ class QueryGeneratorClass {
         return procedure_statement;
     }
 
+    distinctQueryGenerator(url){
+        const urlParts = url.split('/');
+        const distinctName = urlParts[urlParts.length - 1];
+        const tableName = urlParts[urlParts.length - 2];
+        return `SELECT ${distinctName} from ${tableName}`
+    }
+
 
 }
 export let QueryGenerator = new QueryGeneratorClass();

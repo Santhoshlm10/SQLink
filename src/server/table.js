@@ -9,29 +9,32 @@ const tableRouter = express.Router();
 
 tableRouter.get('/:tablename/:mode', async (req, res) => {
   let mode = req.params.mode
-  if (mode == "read") {
-    const tablename = req.params.tablename;
-    const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const tablename = req.params.tablename;
+  const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  let items = null
     try {
       SQLog.request(`Request received from ${clientIp} for table ${tablename} of type ${mode}`)
-      const items = await SQLQueries.getMethod(req.url);
+      if(mode.startsWith("read")){
+        items = await SQLQueries.getMethod(req.url);
+      }else if(mode.startsWith("distinct")){
+        items = await SQLQueries.distinctMethod(req.url);
+      }else{
+          res.status(500).send({ success: false, message: "mode operator seems to be invalid, accepts only 'read' for get request" })
+      }
       SQLog.response(`Response send to ${clientIp} from table ${tablename} of type ${mode}`)
       res.json(items);
     } catch (error) {
       res.status(500).send({ success: false, message: error.message })
     }
-  } else {
-    res.status(500).send({ success: false, message: "mode operator seems to be invalid, accepts only 'read' for get request" })
-  }
 });
 
 
 tableRouter.post('/:tablename/:mode', async (req, res) => {
   let mode = req.params.mode
   if (mode == "create") {
-    const tablename = req.params.tablename;
-    const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    const payload_body = req.body
+  const tablename = req.params.tablename;
+  const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const payload_body = req.body
     try {
       SQLog.request(`Request received from ${clientIp} for table ${tablename} of type ${mode}`)
       const items = await SQLQueries.insertMethod(req.url,payload_body);
