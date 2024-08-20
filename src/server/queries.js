@@ -84,12 +84,10 @@ class SQLQueriesClass{
       const [rows] = await pool.query(query)
       if(rows[0]?.["count"] >= 1){
         let query = QueryGenerator.updateQueryGenerator(em_url,payload);
-        console.log("UpdateQuery",query)
         await pool.query(query)
         return {success:true,message:"upsert operation completed"}
       }else{
         let query = QueryGenerator.insertQueryGenerator(em_url,payload);
-        console.log("InsertQuery",query)
         await pool.query(query)
         return {success:true,message:"upsert operation completed"}
       }
