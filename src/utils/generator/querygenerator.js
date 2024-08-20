@@ -95,6 +95,17 @@ class QueryGeneratorClass {
         return `SELECT ${distinctName} from ${tableName}`
     }
 
+    upsertQueryGenerator(url){
+        const urlParts = url.split('/');
+        const tableName = urlParts[urlParts.length - 2]; 
+        const keyValueString = urlParts[urlParts.length - 1].match(/\(([^)]+)\)/)[1];
+        const [key, value] = keyValueString.split(',');
+        const query = `SELECT COUNT(1) as count from ${tableName} WHERE ${key}='${value}';`;
+        return query;
+    }
+
+
+
 
 }
 export let QueryGenerator = new QueryGeneratorClass();

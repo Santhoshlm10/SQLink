@@ -76,7 +76,29 @@ class SQLQueriesClass{
     }
   }
 
+  async upsertMethod(url,payload){
+    try {
+      let em_url = `/table${url}`
+      const pool = getPool();
+      let query = QueryGenerator.upsertQueryGenerator(em_url);
+      const [rows] = await pool.query(query)
+      if(rows[0]?.["count"] >= 1){
+        let query = QueryGenerator.updateQueryGenerator(em_url,payload);
+        console.log("UpdateQuery",query)
+        await pool.query(query)
+        return {success:true,message:"upsert operation completed"}
+      }else{
+        let query = QueryGenerator.insertQueryGenerator(em_url,payload);
+        console.log("InsertQuery",query)
+        await pool.query(query)
+        return {success:true,message:"upsert operation completed"}
+      }
+    } catch (error) {
+      return {success:false,message:error.message}
 
+    }
+  }
 }
+
 export let SQLQueries = new SQLQueriesClass();
  
