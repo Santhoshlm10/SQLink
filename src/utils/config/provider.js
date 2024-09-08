@@ -25,6 +25,12 @@ export async function launchProvider() {
             },
             {
                 type: 'input',
+                name: 'port',
+                message: 'Enter your MySQL port: ',
+                default: '3306'
+            },
+            {
+                type: 'input',
                 name: 'database_name',
                 message: 'Enter Database name: '
             },

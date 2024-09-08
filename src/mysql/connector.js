@@ -10,6 +10,7 @@ export async function initialiseDatabase() {
       user: db_config.user,
       password: db_config.password,
       database: db_config.database_name,
+      port: db_config.port
     });
     pool = p.promise();
   }
