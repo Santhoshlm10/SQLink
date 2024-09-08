@@ -29,7 +29,7 @@ export async function initServer() {
   console.log(
     chalk.yellow(figlet.textSync("SQLink", { horizontalLayout: "full" }))
   );
-  console.log(`\t\t${chalk.yellowBright('1.1.2')}`)
+  console.log(`\t\t${chalk.yellowBright('1.1.3')}`)
   console.log(` Website: ${styledUrl1}  npm: ${styledUrl2}  Github: ${styledUrl3}\n`)
   const port = db_config.server_port;
   let current_ip = getLocalIpAddress()
