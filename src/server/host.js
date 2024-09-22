@@ -39,8 +39,9 @@ export function staticHost() {
     app.use("/static", express.static(path));
     let current_ip = getLocalIpAddress();
     app.listen(port, () => {
+      SQLog.info(`Hosting directory ${path}`, true);
       SQLog.info(
-        `Server is ready to host files from http://${current_ip}:${port}/static${path}, query any static file in the browser to see the response`,
+        `Server is ready to host files from http://${current_ip}:${port}/static/, query any static file in the browser to see the response`,
         true
       );
     });
