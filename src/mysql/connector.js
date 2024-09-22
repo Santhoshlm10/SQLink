@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 import { db_config } from '../utils/config/checker.js';
-
+import {STRINGS} from "./../strings.js"
 let pool;
 
 export async function initialiseDatabase() {
@@ -18,7 +18,7 @@ export async function initialiseDatabase() {
 
 export function getPool() {
   if (!pool) {
-    throw new Error('Database pool not initialized. Call initialiseDatabase() first.');
+    throw new Error(STRINGS.DATABASE_NOT_INITIALISED);
   }
   return pool;
 }

@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 
-
 import { program } from "commander";
 import { validateCommand } from "./src/app.js";
+import { STRINGS } from "./src/strings.js";
 
 program
-  .version("1.1.3")
-  .name("sqlink")
-  .description("SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.")
-  .option("run", "runs the sqlink program")
-  .option("update", "updates the library to the latest version")
-  .option("config", "you can update the mysql configuration from CLI")
+  .version(STRINGS.APP_VERSION)
+  .name(STRINGS.APP_NAME)
+  .description(STRINGS.APP_DESCRIPTION)
+  .option("run", STRINGS.RUN_COMMAND)
+  .option("update", STRINGS.UPDATE_COMMAND)
+  .option("config", STRINGS.CONFIG_COMMAND)
+  .option("host", STRINGS.HOST_STATIC_FILES)
   .arguments("option")
-  .action(async(command) => {
-      await validateCommand(command)
+  .action(async (command) => {
+    await validateCommand(command);
   });
 program.parse(process.argv);
