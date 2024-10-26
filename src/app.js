@@ -4,7 +4,6 @@ import { exec } from "child_process";
 import { launchProvider } from "./utils/config/provider.js";
 import {
   createConfigurationIfNotPresent,
-  db_config,
   hasConfiguration,
   initConfiguration,
   returnPropertiesPath,

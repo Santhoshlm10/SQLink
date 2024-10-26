@@ -7,13 +7,26 @@ import { launchProvider } from "./provider.js";
 
 const homeDir = os.homedir();
 
-export let db_config = {}
+export let db_config = {};
+export let uploads_folder = null;
+
 
 export async function hasConfiguration(){
     const sqlinkDir = path.join(homeDir, '.sqlink');
     const propertiesFilePath = path.join(sqlinkDir, 'properties.json');
     let pathExists = fs.existsSync(propertiesFilePath)
     return pathExists
+}
+
+// this function checks if there is a upload folder in .sqlink/uploads, if not create one.
+export async function verifyUploadsFolder(){
+    const uploadsFolder = path.join(homeDir,".sqlink","uploads")
+    let exists = fs.existsSync(uploadsFolder)
+    if(!exists){
+        fs.mkdirSync(uploadsFolder, { recursive: true });
+    }
+    uploads_folder = uploadsFolder;
+    return;
 }
 
 export function returnPropertiesPath(){
@@ -48,6 +61,7 @@ export async function initConfiguration(){
     const jsonFilePath = returnPropertiesPath()
     const data = await fs.readFileSync(jsonFilePath, 'utf8');
     const jsonData = JSON.parse(data);
+    await verifyUploadsFolder();
     db_config = jsonData
     return;
 }
