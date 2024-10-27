@@ -1,3 +1,4 @@
+import { STRINGS } from "../strings.js";
 import { getPool } from "./../mysql/connector.js"
 import {QueryGenerator} from "./../utils/generator/querygenerator.js"
 
@@ -22,7 +23,7 @@ class SQLQueriesClass{
       const pool = getPool();
       let query = QueryGenerator.insertQueryGenerator(em_url,payload);
       await pool.query(query)
-      return {success:true,message:"Data inserted successfully"}
+      return {success:true,message:STRINGS.DATA_INSERTION_SUCCESS}
     } catch (error) {
       return {success:false,message:error.message}
     }
@@ -34,7 +35,7 @@ class SQLQueriesClass{
       const pool = getPool();
       let query = QueryGenerator.updateQueryGenerator(em_url,payload);
       await pool.query(query)
-      return {success:true,message:"Data updated successfully"}
+      return {success:true,message:STRINGS.DATA_UPDATE_SUCCESS}
     } catch (error) {
       return {success:false,message:error.message}
     }
@@ -46,7 +47,7 @@ class SQLQueriesClass{
       const pool = getPool();
       let query = QueryGenerator.deleteQueryGenerator(em_url);
       await pool.query(query)
-      return {success:true,message:"Data deleted successfully"}
+      return {success:true,message:STRINGS.DATA_DELETE_SUCCESS}
     } catch (error) {
       return {success:false,message:error.message}
     }
@@ -85,11 +86,11 @@ class SQLQueriesClass{
       if(rows[0]?.["count"] >= 1){
         let query = QueryGenerator.updateQueryGenerator(em_url,payload);
         await pool.query(query)
-        return {success:true,message:"upsert operation completed"}
+        return {success:true,message:STRINGS.DATA_UPSERT_SUCCESS}
       }else{
         let query = QueryGenerator.insertQueryGenerator(em_url,payload);
         await pool.query(query)
-        return {success:true,message:"upsert operation completed"}
+        return {success:true,message:STRINGS.DATA_UPSERT_SUCCESS}
       }
     } catch (error) {
       return {success:false,message:error.message}

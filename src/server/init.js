@@ -11,6 +11,9 @@ import { getLocalIpAddress } from "../utils/config/ipconfig.js";
 import { STRINGS } from "../strings.js";
 import path from "path";
 import os from "os";
+import authRouter from "./auth.js";
+import jwt from "jsonwebtoken"
+import { verifyUserAuth } from "../utils/config/auth.js";
 
 const websiteurl = "https://sqlinkjs.github.io/";
 const npmurl = "https://www.npmjs.com/package/sqlink";
@@ -26,14 +29,34 @@ const homeDir = os.homedir();
 const uploads_path = path.join(homeDir, ".sqlink","uploads")
 app.use(cors());
 
+function verifyToken(req,res,next){
+  const token = req.header("Authorization");
+  if(!token){
+      return res.status(401).json({success:false,message:STRINGS.ACCESS_DENIED})
+  }
+  try {
+      const decoded = jwt.verify(token.split(" ")[1],"THISISASECRETKEYFORSQLINK")
+      req.user  = decoded;
+      next();
+  } catch (error) {
+      res.status(401).json({success:false,message:STRINGS.INVALID_TOKEN})
+  }
+}
+const validateAuth = (req,res,next) => {
+  if(process.argv[3] == "auth"){
+    verifyToken(req,res,next);
+  }else{
+    next();
+  }
+}
+
 app.use(express.json());
-app.use("/table", tableRouter);
-app.use("/procedure", procedureRouter);
-
-
+app.use("/table",validateAuth,tableRouter);
+app.use("/procedure",validateAuth,procedureRouter);
+app.use("/auth",authRouter)
 // for file upload and file retrieval
-app.use("/upload",fileuploadrouter)
-app.use("/file", express.static(uploads_path));
+app.use("/upload",validateAuth,fileuploadrouter)
+app.use("/file",validateAuth,express.static(uploads_path));
 
 export async function initServer() {
   console.log(
@@ -45,6 +68,7 @@ export async function initServer() {
   );
   const port = db_config.server_port;
   let current_ip = getLocalIpAddress();
+  await verifyUserAuth()
   const server = app.listen(port, (err) => {
     if (err) {
       SQLog.error(
@@ -68,6 +92,12 @@ export async function initServer() {
         `Server is running on http://${current_ip}:${port}, and is ready to respond to your queries`,
         true
       );
+      if(process.argv[3] == "auth"){
+        SQLog.info(
+          `Application is currently running with authentication, please include the token in your queries`,
+          true
+        );
+      }
     }
   });
 

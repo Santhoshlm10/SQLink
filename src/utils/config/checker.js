@@ -4,6 +4,7 @@ import path from "path";
 import os from "os"
 import { SQLog } from "../logger/logger.js";
 import { launchProvider } from "./provider.js";
+import { STRINGS } from "../../strings.js";
 
 const homeDir = os.homedir();
 
@@ -40,7 +41,7 @@ export function writeConfig(configContent,ppfilePath){
     try {
         fs.writeFileSync(ppfilePath, JSON.stringify(configContent, null, 2), 'utf-8');
         SQLog.info(`Config file created at ${ppfilePath}`, false);
-        SQLog.info(`Please run 'sqlink run' command to start the program with applied MySQL configuration, or use 'sqlink config' to update the configuration.`, false);
+        SQLog.info(STRINGS.RERUN_STATEMENT, false);
         return;
     } catch (err) {
         SQLog.error(`Error writing to file ${ppfilePath}: ${err.message}`, false);

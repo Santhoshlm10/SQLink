@@ -1,5 +1,5 @@
 export const STRINGS = {
-  APP_VERSION: "1.1.5",
+  APP_VERSION: "1.1.6",
   APP_NAME: "sqlink",
   APP_DESCRIPTION:
     "SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.",
@@ -16,5 +16,23 @@ export const STRINGS = {
   NPM_INSTALL_CMD: "npm install -g sqlink@latest",
   SUDO_NPM_INSTALL_CMD: "sudo npm install -g sqlink@latest",
   HOST_ERROR_MESSAGE: "Please mention a valid port and folder path to host static file server",
-  UNABLE_TO_START_SERVER: "Oops, unable to start the server"
+  UNABLE_TO_START_SERVER: "Oops, unable to start the server",
+  RERUN_STATEMENT: "Please run 'sqlink run' command to start the program with applied MySQL configuration, or use 'sqlink config' to update the configuration.",
+  MYSQL_HOST:"Enter your MySQL host: ",
+  MYSQL_USER:"Enter your MySQL user: ",
+  MYSQL_PASSWORD:"Enter your MySQL password: ",
+  MYSQL_PORT:"Enter your MySQL port: ",
+  MYSQL_DATABASE:"Enter Database name: ",
+  APP_PORT:"Enter the port where app needs to be hosted: ",
+  NO_USERS_TABLE:"No users table found so creating one",
+  DATA_INSERTION_SUCCESS:"Data inserted successfully",
+  DATA_UPDATE_SUCCESS:"Data updated successfully",
+  DATA_DELETE_SUCCESS:"Data deleted successfully",
+  DATA_UPSERT_SUCCESS:"Upsert operation completed",
+  ACCESS_DENIED: "Access Denied",
+  INVALID_TOKEN: "Invalid Token",
+  INVALID_CREDENTIALS:"Invalid Credentials",
+  USER_REGISTER_SUCCESS:"User register succesful"
+
+
 };

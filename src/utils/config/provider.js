@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
 import { SQLog } from '../logger/logger.js';
+import { STRINGS } from '../../strings.js';
 
 export async function launchProvider() {
     try {
@@ -8,36 +9,36 @@ export async function launchProvider() {
             {
                 type: 'input',
                 name: 'host',
-                message: 'Enter your MySQL host: ',
+                message: STRINGS.MYSQL_HOST,
                 default: 'localhost'
             },
             {
                 type: 'input',
                 name: 'user',
-                message: 'Enter your MySQL user: ',
+                message: STRINGS.MYSQL_USER,
                 default: 'root'
             },
             {
                 type: 'password',
                 name: 'password',
-                message: 'Enter your MySQL password: ',
+                message: STRINGS.MYSQL_PASSWORD,
                 mask: '*'
             },
             {
                 type: 'input',
                 name: 'port',
-                message: 'Enter your MySQL port: ',
+                message: STRINGS.MYSQL_PORT,
                 default: '3306'
             },
             {
                 type: 'input',
                 name: 'database_name',
-                message: 'Enter Database name: '
+                message: STRINGS.MYSQL_DATABASE
             },
             {
                 type: 'input',
                 name: 'server_port',
-                message: 'Enter the port where app needs to be hosted: ',
+                message: STRINGS.APP_PORT,
                 default: '8081'
             }
         ]);
