@@ -1,5 +1,5 @@
 export const STRINGS = {
-  APP_VERSION: "1.1.6",
+  APP_VERSION: "1.1.7",
   APP_NAME: "sqlink",
   APP_DESCRIPTION:
     "SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.",

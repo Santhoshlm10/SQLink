@@ -24,6 +24,12 @@ let current_ip = getLocalIpAddress();
 fileuploadrouter.post("/", upload.array("files", 50), async (req, res) => {
   const port = db_config.server_port;
   try {
+    if(!req.files){
+      return res.status(500).json({
+        success:false,
+        message:"please use the payload key name as 'files' to upload"
+      })
+    }
     const req_arr = req.files.map((item) => {
       return {
         ...item,
