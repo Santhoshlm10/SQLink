@@ -1,5 +1,5 @@
 export const STRINGS = {
-  APP_VERSION: "1.1.9",
+  APP_VERSION: "1.2.0",
   APP_NAME: "sqlink",
   APP_DESCRIPTION:
     "SQLink is a Node.js library that turns MySQL tables into RESTful APIs with procedure execution and full CRUD support.",
@@ -42,10 +42,6 @@ export const STRINGS = {
   INVALID_CREDENTIALS_ENTERED: "Unable to login user as credentials were invalid",
   USER_LOGIN_SUCCESS: "Login user successfull",
   UNABLE_TO_LOGIN_USER: "Unable to login the user",
-  ENUM_INVALID_TABLE: "Please provide a table name to generate the enum",
-  ENUM_GENERATED_SUCCESS: "Enum generated successfully",
-  ENUM_GENERATION_FAILED: "Failed to generate enum",
-  ENUM_COPIED_CLIPBOARD: "Enum has been copied to your clipboard, you can paste it in your code.",
   INVALID_TABLE_NAME: "Invalid table name",
   REQUIRE_FILES_IN_UPLOAD: "please use the payload key name as 'files' to upload",
   UPLOAD_REQUEST_RECEIVED: "File upload request received",

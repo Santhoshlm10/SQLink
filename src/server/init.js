@@ -6,7 +6,7 @@ import fileuploadrouter from "./../server/fileupload.js";
 import figlet from "figlet";
 import { SQLog } from "./../utils/logger/logger.js";
 import cors from "cors";
-import { db_config, returnPropertiesPath } from "../utils/config/checker.js";
+import { db_config } from "../utils/config/checker.js";
 import { getLocalIpAddress } from "../utils/config/ipconfig.js";
 import { STRINGS } from "../strings.js";
 import path from "path";
@@ -58,7 +58,7 @@ app.use("/auth",authRouter)
 app.use("/upload",validateAuth,fileuploadrouter)
 app.use("/file",validateAuth,express.static(uploads_path));
 
-export async function initServer() {
+export async function initServer(command) {
   console.log(
     chalk.yellow(figlet.textSync("SQLink", { horizontalLayout: "full" }))
   );
@@ -76,10 +76,6 @@ export async function initServer() {
         false
       );
     } else {
-      SQLog.info(
-        `Reading configuration file from path ${returnPropertiesPath()}`,
-        true
-      );
       SQLog.info(
         `MySQL  is configured to use the database ${db_config.database_name} with the user ${db_config.user}`,
         true
