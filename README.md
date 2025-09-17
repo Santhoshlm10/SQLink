@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://sqlinkjs.github.io/images/logo.png" alt="github-small" height="110" width="200">
+  <img src="https://sqlinkjs.github.io/img/logo.svg" alt="github-small" height="110" width="200">
 </p>
 <h1 align="center">SQLink</h1>
 <div align="center">
@@ -42,18 +42,13 @@ Before querying data from MySQL, you need to configure SQLink. To do this, run t
 
 - **Without Auth**
   ```
-  sqlink run
+  sqlink run -h [Host] -u [User] -p [Password] -P [Port] -D [Database] -o [Output Port]
   ```
 - **With Auth**
   ```
-  sqlink run auth
+  sqlink run auth -h [Host] -u [User] -p [Password] -P [Port] -D [Database] -o [Output Port]
   ```
-After running this command, you will be prompted in the console to enter your MySQL credentials.
-
-> **Important:** Configuration is required only when you run the program for the first time or if the configuration file has been deleted.
-
-Once you enter the MySQL and Server configuration, you can re-run `sqlink run` command again and start querying the data.
-
+  
 ## Usage
 
 ### Querieing Tables
@@ -219,38 +214,6 @@ SQLink provides inbuild API to upload files and returns the URL where the file i
       }
   ```
 > **Important:** Make sure the key in the payload remains as ***files***, using any other payload key will result in error response.
-
-
-### Generating Enum
-
-SQLink helps you to generate enum for your MySQL tables and you can use the generated enum directly in your code.
-
-- **Usage**
-  ```bash
-  sqlink enum <YOUR_TABLE_NAME>
-  ```
-- **Example**
-  ```bash
-  sqlink enum customer
-  ```
-- **Output**
-  ```bash
-  export enum CUSTOMERS_Enum {
-	customerNumber = "customerNumber",
-	customerName = "customerName",
-	contactLastName = "contactLastName",
-	contactFirstName = "contactFirstName",
-	phone = "phone",
-	addressLine1 = "addressLine1",
-	addressLine2 = "addressLine2",
-	city = "city",
-	state = "state",
-	postalCode = "postalCode",
-	country = "country",
-	salesRepEmployeeNumber = "salesRepEmployeeNumber",
-	creditLimit = "creditLimit"
-  }
-  ```
 
 ## Contributing
 
